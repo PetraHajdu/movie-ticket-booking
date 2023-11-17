@@ -1,0 +1,9 @@
+<div class="Cinema">
+    <div class="screen"></div>
+  
+    <div class="seats">
+      <span *ngFor="let seat of seats" [ngClass]="getSeatClasses(seat)" (click)="onSelectSeat(seat)">
+        {{ seat }}
+      </span>
+    </div>
+  </div>

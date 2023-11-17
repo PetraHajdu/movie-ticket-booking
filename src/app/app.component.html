@@ -1,9 +1,12 @@
-<div>
-    <h1>Movie Ticket Booking App</h1>
-    <nav>
-      <a routerLink="/seat-selection">Seat Selection</a>
-    </nav>
-    <router-outlet></router-outlet>
+<div class="App">
+  <app-movies [movies]="movies" [selectedMovie]="selectedMovie" (updateSelectedMovie)="updateSelectedMovie($event)"></app-movies>
+  <app-showcase></app-showcase>
+  <app-cinema [movie]="selectedMovie" [selectedSeats]="selectedSeats" (updateSelectedSeats)="updateSelectedSeats($event)"></app-cinema>
+
+  <p class="info">
+    You have selected <span class="count">{{ selectedSeats.length }}</span> seats for the price of
+    <span class="total">{{ getTotalPrice() }}$</span>
+  </p>
 </div>
 
 
