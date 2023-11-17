@@ -35,8 +35,8 @@ export class AppComponent {
   selectedSeats: number[] = [];
 
   updateSelectedMovie(movie: any): void {
-    this.selectedSeats = [];
-    this.selectedMovie = movie;
+      this.selectedSeats = [];
+      this.selectedMovie = movie;
   }
 
   updateSelectedSeats(seats: number[] | number): void {

@@ -2,8 +2,10 @@
     <div class="screen"></div>
   
     <div class="seats">
-      <span *ngFor="let seat of seats" [ngClass]="getSeatClasses(seat)" (click)="onSelectSeat(seat)">
-        {{ seat }}
+      <span *ngFor="let seat of seats" tabindex="0"
+      [class]="getSeatClasses(seat).join(' ')"
+      (click)="handleSelectedState(seat)"
+      (keypress)="handleKeyPress($event, seat)">
       </span>
     </div>
   </div>

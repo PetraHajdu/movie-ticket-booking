@@ -2,7 +2,7 @@
   <label for="movie">Pick a movie</label>
   <select id="movie" [(ngModel)]="selectedMovie" (change)="onSelectMovie($event)">
     <option *ngFor="let movie of movies" [value]="movie">
-      {{ movie.name }} {{ movie.price }}
+      {{ movie.name }} {{ movie.price }}$
     </option>
   </select>
 </div>

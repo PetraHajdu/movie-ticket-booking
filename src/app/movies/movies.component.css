@@ -1,0 +1,13 @@
+.Movies {
+    margin-bottom: 24px;
+  }
+  
+  .Movies select {
+    appearance: none;
+    background: white;
+    font-size: 14px;
+    margin-left: 12px;
+    border-radius: 4px;
+    padding: 6px 24px;
+  }
+  

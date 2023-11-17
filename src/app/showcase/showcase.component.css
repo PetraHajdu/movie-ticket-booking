@@ -1,0 +1,15 @@
+.ShowCase {
+    margin: 0 0 48px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background: #3b3b3b;
+    padding: 12px;
+    border-radius: 4px;
+    color: #7e7e7e;
+}
+  
+.ShowCase li {
+    margin: 0 12px;
+}
