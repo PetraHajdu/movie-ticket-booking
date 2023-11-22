@@ -28,3 +28,4 @@ import { CinemaComponent } from './cinema/cinema.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

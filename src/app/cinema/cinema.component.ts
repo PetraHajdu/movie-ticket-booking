@@ -1,3 +1,5 @@
+// cinema.component.ts
+
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,29 +9,33 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CinemaComponent {
   @Input() movie!: any;
-  @Input() selectedSeats!: number[];
-  @Output() updateSelectedSeats = new EventEmitter<number | number[]>();
+  @Input() selectedSeats: number[] = [];
+  @Output() seatSelected = new EventEmitter<number>();
+  @Output() seatDeselected = new EventEmitter<number>();
 
   seats: number[] = Array.from({ length: 8 * 8 }, (_, i) => i);
 
   handleSelectedState(seat: number): void {
-    const isSelected = this.selectedSeats.includes(seat);
-    if (isSelected) {
-      this.updateSelectedSeats.emit(this.selectedSeats.filter(selectedSeat => selectedSeat !== seat));
-    } else {
-      this.updateSelectedSeats.emit([...this.selectedSeats, seat]);
+    if (!this.movie || !('occupied' in this.movie) || !this.movie.occupied) {
+      console.error('Occupied property of the movie is undefined');
+      return;
     }
-  }
 
-  handleKeyPress(event: KeyboardEvent, seat: number): void {
-    if (event.key === 'Enter') {
-      this.handleSelectedState(seat);
+    const isSelected = this.selectedSeats.includes(seat);
+    const isOccupied = this.movie.occupied.includes(seat);
+
+    if (!isOccupied) {
+      if (isSelected) {
+        this.seatDeselected.emit(seat);
+      } else {
+        this.seatSelected.emit(seat);
+      }
     }
   }
 
   getSeatClasses(seat: number): string[] {
     const isSelected = this.selectedSeats.includes(seat);
-    const isOccupied = this.movie.occupied.includes(seat);
+    const isOccupied = this.movie && this.movie.occupied && this.movie.occupied.includes(seat);
 
     return [
       'seat',
@@ -38,6 +44,7 @@ export class CinemaComponent {
     ];
   }
 }
+
 
 
 

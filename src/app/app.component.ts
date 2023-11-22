@@ -1,3 +1,5 @@
+// app.component.ts
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,21 +12,25 @@ export class AppComponent {
 
   movies = [
     {
+      id: 1,
       name: 'Avenger',
       price: 10,
       occupied: [20, 21, 30, 1, 2, 8],
     },
     {
+      id: 2,
       name: 'Joker',
       price: 12,
       occupied: [9, 41, 35, 11, 65, 26],
     },
     {
+      id: 3,
       name: 'Toy story',
       price: 8,
       occupied: [37, 25, 44, 13, 2, 3],
     },
     {
+      id: 4,
       name: 'the lion king',
       price: 9,
       occupied: [10, 12, 50, 33, 28, 47],
@@ -35,22 +41,19 @@ export class AppComponent {
   selectedSeats: number[] = [];
 
   updateSelectedMovie(movie: any): void {
-      this.selectedSeats = [];
-      this.selectedMovie = movie;
+    console.log('Selected Movie:', movie.name);
+    this.selectedSeats = [];
+    this.selectedMovie = movie;
+
+    console.log('Selected Movie Object:', this.selectedMovie);
   }
 
-  updateSelectedSeats(seats: number[] | number): void {
-    if (Array.isArray(seats)) {
-      // Ha a seats egy tömb, akkor kezeld a kiválasztott üléseket
-      this.selectedSeats = seats.slice(); // Példa: az egész tömböt másold be
+  updateSelectedSeats(seat: number): void {
+    const index = this.selectedSeats.indexOf(seat);
+    if (index === -1) {
+      this.selectedSeats.push(seat);
     } else {
-      // Ha a seats egyetlen szám, akkor kezeld azt a számot
-      const index = this.selectedSeats.indexOf(seats);
-      if (index === -1) {
-        this.selectedSeats.push(seats);
-      } else {
-        this.selectedSeats.splice(index, 1);
-      }
+      this.selectedSeats.splice(index, 1);
     }
   }
 
@@ -58,3 +61,4 @@ export class AppComponent {
     return this.selectedSeats.length * this.selectedMovie.price;
   }
 }
+

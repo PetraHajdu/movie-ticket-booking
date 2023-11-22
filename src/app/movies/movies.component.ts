@@ -10,8 +10,8 @@ export class MoviesComponent {
   @Input() selectedMovie: any;
   @Output() updateSelectedMovie = new EventEmitter<any>();
 
-  onSelectMovie(movie: any): void {
-    this.updateSelectedMovie.emit(movie);
+  onSelectMovie(): void {
+    this.updateSelectedMovie.emit(this.selectedMovie);
   }
 }
 

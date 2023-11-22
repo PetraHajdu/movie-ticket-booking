@@ -17,6 +17,11 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
+
+  background-image: url("src/assets/images/rows-red-seats-theater.jpg");
+  background-size: cover; /* A háttérkép méretét a konténer méretéhez igazítja */
+  background-position: center; /* A háttérképet középre pozicionálja */
+  background-repeat: no-repeat; /* Ne ismételje meg a háttérképet */
 }
 
 .App {

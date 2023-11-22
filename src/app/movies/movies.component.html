@@ -1,7 +1,7 @@
 <div class="Movies">
   <label for="movie">Pick a movie</label>
-  <select id="movie" [(ngModel)]="selectedMovie" (change)="onSelectMovie($event)">
-    <option *ngFor="let movie of movies" [value]="movie">
+  <select id="movie" [(ngModel)]="selectedMovie" (change)="onSelectMovie()">
+    <option *ngFor="let movie of movies" [ngValue]="movie">
       {{ movie.name }} {{ movie.price }}$
     </option>
   </select>

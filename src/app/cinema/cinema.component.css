@@ -1,12 +1,12 @@
 .Cinema {
     margin-bottom: 18px;
     perspective: 400px;
-  
+
     display: grid;
     place-items: center;
     grid-gap: 24px;
   }
-  
+
 .Cinema .screen {
     height: 70px;
     background: white;
@@ -14,29 +14,29 @@
     transform: rotateX(-30deg) scale(1.1);
     box-shadow: 0 3px 10px 2px;
 }
-  
+
 .Cinema .seats {
     display: grid;
     grid-gap: 6px;
     grid-template-columns: repeat(8, min-content);
     align-items: center;
 }
-  
+
 .Cinema .seats .seat:nth-of-type(8n + 2) {
     margin-right: 12px;
 }
-  
+
 .Cinema .seats .seat:nth-of-type(8n + 6) {
     margin-right: 12px;
 }
-  
+
 .Cinema .seats .seat:not(.occupied):hover,
 .Cinema .seats .seat:not(.occupied):focus {
     cursor: pointer;
     background: #c1eac5;
     transform: scale(1.2);
 }
-  
+
 .Cinema .seats .seat.selected::after {
     content: '';
     position: absolute;
@@ -50,45 +50,51 @@
     animation: show-off 0.8s;
     visibility: hidden;
 }
-  
+
 @keyframes show-off {
     0% {
       transform: scale(1);
       opacity: 1;
       visibility: visible;
 }
-  
+
 100% {
       transform: scale(3);
       opacity: 0;
-    } 
+    }
 }
-  
+
 .seat {
     display: inline-block;
     background: #626262;
-    width: 16px;
-    height: 12px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    width: 30px;
+    height: 30px;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+    border-radius: 4px;
     transition: transform 0.3s ease-in-out;
-  
+
     position: relative;
     top: 1px;
+
+    text-align: center; /* Szöveg középre igazítása */
+    line-height: 30px; /* Szöveg középre igazítása */
+    font-size: 14px; /* Betűméret a számokhoz */
+    color: #fff; /* Szöveg színe fehér */
 }
-  
+
 .seat.selected {
     background: #7bc47f !important;
 }
-  
+
 .seat.occupied {
     background: #cfcfcf;
 }
-  
+
 .info .count {
     color: #7bc47f;
 }
-  
+
 .info .total {
     color: #7bc47f;
 }

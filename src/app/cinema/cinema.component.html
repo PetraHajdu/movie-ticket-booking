@@ -1,11 +1,11 @@
 <div class="Cinema">
     <div class="screen"></div>
-  
+
     <div class="seats">
       <span *ngFor="let seat of seats" tabindex="0"
       [class]="getSeatClasses(seat).join(' ')"
-      (click)="handleSelectedState(seat)"
-      (keypress)="handleKeyPress($event, seat)">
+      (click)="handleSelectedState(seat)">
+        {{ seat + 1 }}
       </span>
     </div>
   </div>
