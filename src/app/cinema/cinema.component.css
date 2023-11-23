@@ -8,7 +8,7 @@
   }
 
 .Cinema .screen {
-    height: 50px;
+    height: 30px;
     background: rgb(255, 255, 255);
     width: 100%;
     /* transform: rotateX(-30deg) scale(1.1); */

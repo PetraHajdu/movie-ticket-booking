@@ -1,15 +1,40 @@
 .ShowCase {
     margin: 0 0 48px;
-    padding: 0;
+    padding: 12px;
     list-style: none;
     display: flex;
     justify-content: center;
-    background: #3b3b3b;
-    padding: 12px;
+    background: #ffffff;
     border-radius: 4px;
-    color: #7e7e7e;
+    color: #131313;
+    background-color: rgba(255, 255, 255, 0.8);
 }
-  
+
 .ShowCase li {
     margin: 0 12px;
+}
+
+.ShowCase .seat {
+  display: inline-flex;
+  background: #626262;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.ShowCase .seat.available {
+  background: #626262;
+}
+
+.ShowCase .seat.selected {
+  background: #0db012;
+}
+
+.ShowCase .seat.occupied {
+  background: #cc0000;
+}
+
+.ShowCase small {
+  display: block;
+  margin: auto;
 }
