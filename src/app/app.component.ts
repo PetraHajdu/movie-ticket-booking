@@ -1,6 +1,8 @@
 // app.component.ts
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MovieService } from './movie.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'movie-ticket-booking';
-
+/*
   movies = [
     {
       id: 1,
@@ -39,6 +41,19 @@ export class AppComponent {
 
   selectedMovie = this.movies[0];
   selectedSeats: number[] = [];
+*/
+  movies: any[] = [];
+  selectedMovie: any;
+  selectedSeats: number[] = [];
+
+  constructor(private movieService: MovieService) {}
+
+  ngOnInit(): void {
+    this.movieService.getMovies().subscribe((movies) => {
+      this.movies = movies;
+      this.selectedMovie = this.movies[0];
+    });
+  }
 
   updateSelectedMovie(movie: any): void {
     console.log('Selected Movie:', movie.name);
@@ -58,7 +73,10 @@ export class AppComponent {
   }
 
   getTotalPrice(): number {
-    return this.selectedSeats.length * this.selectedMovie.price;
+    if (this.selectedMovie) {
+      return this.selectedSeats.length * this.selectedMovie.price;
+    }
+    return 0;
   }
 }
 
