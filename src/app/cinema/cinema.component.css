@@ -20,7 +20,7 @@
   border-collapse: separate;
 }
 
-.Cinema .seats td {
+.Cinema .seats td:not(.row-number) {
   display: table-cell;
   background: #626262;
   width: 30px;
@@ -43,11 +43,15 @@
   background: #cc0000;
 }
 
-.Cinema .seats td:not(.occupied):hover,
-.Cinema .seats td:not(.occupied):focus {
+.Cinema .seats td:not(.occupied,.row-number):hover,
+.Cinema .seats td:not(.occupied,.row-number):focus {
   cursor: pointer;
   background: #8be187;
   transform: scale(1.2);
 }
 
+.Cinema .seats td.row-number {
+  color: #131313;
+  font-weight: bold;
+}
 

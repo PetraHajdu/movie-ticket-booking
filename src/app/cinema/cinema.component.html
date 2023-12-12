@@ -2,7 +2,8 @@
   <div class="screen"></div>
 
   <table class="seats">
-    <tr *ngFor="let row of seats">
+    <tr *ngFor="let row of seats; let rowIndex = index">
+      <td class="row-number">{{ rowIndex + 1 }}</td>
       <ng-container *ngFor="let seat of row">
         <td
           tabindex="0"
