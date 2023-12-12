@@ -10,7 +10,7 @@
           [class]="getSeatClasses(seat).join(' ')"
           (click)="handleSelectedState(seat)"
         >
-          {{ seat + 1 }}
+          {{ seat.displayNumber }}
         </td>
       </ng-container>
     </tr>

@@ -1,5 +1,3 @@
-// cinema.component.ts
-
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -13,31 +11,51 @@ export class CinemaComponent {
   @Output() seatSelected = new EventEmitter<number>();
   @Output() seatDeselected = new EventEmitter<number>();
 
-  seats: number[][] = Array.from({ length: 8 }, (_, i) =>
-    Array.from({ length: 8 }, (_, j) => i * 8 + j)
-  );
+  seats: { seatNumber: number, displayNumber: number }[][] = this.generateSeats();
 
-  handleSelectedState(seat: number): void {
+  private generateSeats(): { seatNumber: number, displayNumber: number }[][] {
+    const seatsArray: { seatNumber: number, displayNumber: number }[][] = [];
+    const numRows = 8;
+    const numCols = 8;
+
+    let seatNumber = 1;
+
+    for (let i = 0; i < numRows; i++) {
+      const row: { seatNumber: number, displayNumber: number }[] = [];
+
+      for (let j = 0; j < numCols; j++) {
+        const displayNumber = j + 1;
+        row.push({seatNumber, displayNumber});
+        seatNumber++;
+      }
+
+      seatsArray.push(row);
+    }
+
+    return seatsArray;
+  }
+
+  handleSelectedState(seat: { seatNumber: number, displayNumber: number }): void {
     if (!this.movie || !('occupied' in this.movie) || !this.movie.occupied) {
       console.error('Occupied property of the movie is undefined');
       return;
     }
 
-    const isSelected = this.selectedSeats.includes(seat);
-    const isOccupied = this.movie.occupied.includes(seat);
+    const isSelected = this.selectedSeats.includes(seat.seatNumber);
+    const isOccupied = this.movie.occupied.includes(seat.seatNumber);
 
     if (!isOccupied) {
       if (isSelected) {
-        this.seatDeselected.emit(seat);
+        this.seatDeselected.emit(seat.seatNumber);
       } else {
-        this.seatSelected.emit(seat);
+        this.seatSelected.emit(seat.seatNumber);
       }
     }
   }
 
-  getSeatClasses(seat: number): string[] {
-    const isSelected = this.selectedSeats.includes(seat);
-    const isOccupied = this.movie && this.movie.occupied && this.movie.occupied.includes(seat);
+  getSeatClasses(seat: { seatNumber: number, displayNumber: number }): string[] {
+    const isSelected = this.selectedSeats.includes(seat.seatNumber);
+    const isOccupied = this.movie && this.movie.occupied && this.movie.occupied.includes(seat.seatNumber);
 
     return [
       'seat',
@@ -45,7 +63,9 @@ export class CinemaComponent {
       isOccupied && 'occupied',
     ];
   }
+
 }
+
 
 
 
