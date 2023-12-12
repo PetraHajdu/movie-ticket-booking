@@ -1,95 +1,53 @@
 .Cinema {
-    margin-bottom: 18px;
-    perspective: 400px;
-
-    display: grid;
-    place-items: center;
-    grid-gap: 24px;
-  }
+  margin-bottom: 18px;
+  perspective: 400px;
+  display: grid;
+  place-items: center;
+  grid-gap: 24px;
+}
 
 .Cinema .screen {
-    height: 30px;
-    background: rgb(255, 255, 255);
-    width: 100%;
-    /* transform: rotateX(-30deg) scale(1.1); */
-    box-shadow: 0 3px 10px 2px;
-    border-radius: 4px;
+  height: 30px;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  box-shadow: 0 3px 10px 2px;
+  border-radius: 4px;
 }
 
 .Cinema .seats {
-    display: grid;
-    grid-gap: 6px;
-    grid-template-columns: repeat(8, min-content);
-    align-items: center;
+  display: table;
+  border-spacing: 10px;
+  border-collapse: separate;
 }
 
-.Cinema .seats .seat:nth-of-type(8n + 2) {
-    margin-right: 12px;
+.Cinema .seats td {
+  display: table-cell;
+  background: #626262;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  top: 1px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  color: #fff;
 }
 
-.Cinema .seats .seat:nth-of-type(8n + 6) {
-    margin-right: 12px;
+.Cinema .seats td.selected {
+  background: #0db012 !important;
 }
 
-.Cinema .seats .seat:not(.occupied):hover,
-.Cinema .seats .seat:not(.occupied):focus {
-    cursor: pointer;
-    background: #8be187;
-    transform: scale(1.2);
+.Cinema .seats td.occupied {
+  background: #cc0000;
 }
 
-.Cinema .seats .seat.selected::after {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 10px;
-    width: 11px;
-    height: 11px;
-    border-radius: 100%;
-    background: transparent;
-    border: 1px solid #7be176;
-    animation: show-off 0.8s;
-    visibility: hidden;
-}
-
-@keyframes show-off {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-      visibility: visible;
-}
-
-100% {
-      transform: scale(3);
-      opacity: 0;
-    }
-}
-
-.seat {
-    display: inline-block;
-    background: #626262;
-    width: 30px;
-    height: 30px;
-    /* border-top-left-radius: 10px; */
-    /* border-top-right-radius: 10px; */
-    border-radius: 4px;
-    transition: transform 0.3s ease-in-out;
-
-    position: relative;
-    top: 1px;
-
-    text-align: center;
-    line-height: 30px;
-    font-size: 14px;
-    color: #fff;
-}
-
-.seat.selected {
-    background: #0db012 !important;
-}
-
-.seat.occupied {
-    background: #cc0000;
+.Cinema .seats td:not(.occupied):hover,
+.Cinema .seats td:not(.occupied):focus {
+  cursor: pointer;
+  background: #8be187;
+  transform: scale(1.2);
 }
 
 

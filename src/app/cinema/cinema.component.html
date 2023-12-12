@@ -1,11 +1,18 @@
 <div class="Cinema">
-    <div class="screen"></div>
+  <div class="screen"></div>
 
-    <div class="seats">
-      <span *ngFor="let seat of seats" tabindex="0"
-      [class]="getSeatClasses(seat).join(' ')"
-      (click)="handleSelectedState(seat)">
-        {{ seat + 1 }}
-      </span>
-    </div>
-  </div>
+  <table class="seats">
+    <tr *ngFor="let row of seats">
+      <ng-container *ngFor="let seat of row">
+        <td
+          tabindex="0"
+          [class]="getSeatClasses(seat).join(' ')"
+          (click)="handleSelectedState(seat)"
+        >
+          {{ seat + 1 }}
+        </td>
+      </ng-container>
+    </tr>
+  </table>
+</div>
+

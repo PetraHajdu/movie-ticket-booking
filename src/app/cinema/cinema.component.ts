@@ -13,7 +13,9 @@ export class CinemaComponent {
   @Output() seatSelected = new EventEmitter<number>();
   @Output() seatDeselected = new EventEmitter<number>();
 
-  seats: number[] = Array.from({ length: 8 * 8 }, (_, i) => i);
+  seats: number[][] = Array.from({ length: 8 }, (_, i) =>
+    Array.from({ length: 8 }, (_, j) => i * 8 + j)
+  );
 
   handleSelectedState(seat: number): void {
     if (!this.movie || !('occupied' in this.movie) || !this.movie.occupied) {
