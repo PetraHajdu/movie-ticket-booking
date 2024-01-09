@@ -1,6 +1,8 @@
 <div class="App">
   <div class="Card">
-    <app-movies [movies]="movies" [selectedMovie]="selectedMovie" (updateSelectedMovie)="updateSelectedMovie($event)"></app-movies>
+    <app-date [dates]="dates" [selectedDate]="selectedDate" (updateSelectedDate)="updateSelectedDate($event)"></app-date>
+    <app-movies *ngIf="selectedDate" [movies]="movies" [filteredMovies]="filteredMovies" [selectedMovie]="selectedMovie" (updateSelectedMovie)="updateSelectedMovie($event)"></app-movies>
+    <app-time *ngIf="selectedDate && selectedMovie" [times]="times" [selectedTime]="selectedTime" [selectedMovie]="selectedMovie" [selectedDate]="selectedDate" (updateSelectedTime)="updateSelectedTime($event)"></app-time>
     <app-showcase></app-showcase>
     <app-cinema [movie]="selectedMovie" [selectedSeats]="selectedSeats"
                 (seatSelected)="updateSelectedSeats($event)"

@@ -7,6 +7,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MoviesComponent {
   @Input() movies: any[] = [];
+  @Input() filteredMovies: any[] = [];
+
   @Input() selectedMovie: any;
   @Output() updateSelectedMovie = new EventEmitter<any>();
 
@@ -14,4 +16,5 @@ export class MoviesComponent {
     this.updateSelectedMovie.emit(this.selectedMovie);
   }
 }
+
 

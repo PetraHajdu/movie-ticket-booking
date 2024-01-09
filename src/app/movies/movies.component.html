@@ -1,8 +1,8 @@
 <div class="Movies">
   <label for="movie">Pick a movie</label>
   <select id="movie" [(ngModel)]="selectedMovie" (change)="onSelectMovie()">
-    <option *ngFor="let movie of movies" [ngValue]="movie">
-      {{ movie.name }} {{ movie.price }}$
+    <option *ngFor="let movie of filteredMovies" [ngValue]="movie">
+      {{ movie.name }}
     </option>
   </select>
 </div>

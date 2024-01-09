@@ -1,12 +1,15 @@
 .Movies {
     margin-bottom: 24px;
-  }
+}
 
-  .Movies select {
+.Movies select {
+    width: 150px;
+    text-align: center;
     appearance: none;
     background-color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
     margin-left: 12px;
     border-radius: 4px;
-    padding: 6px 24px;
-  }
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
