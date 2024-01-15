@@ -4,7 +4,10 @@
     <app-movies *ngIf="selectedDate" [movies]="movies" [filteredMovies]="filteredMovies" [selectedMovie]="selectedMovie" (updateSelectedMovie)="updateSelectedMovie($event)"></app-movies>
     <app-time *ngIf="selectedDate && selectedMovie" [times]="times" [selectedTime]="selectedTime" [selectedMovie]="selectedMovie" [selectedDate]="selectedDate" (updateSelectedTime)="updateSelectedTime($event)"></app-time>
     <app-showcase></app-showcase>
-    <app-cinema [movie]="selectedMovie" [selectedSeats]="selectedSeats"
+    <app-cinema [selectedMovie]="selectedMovie"
+                [selectedSeats]="selectedSeats"
+                [selectedDate]="selectedDate"
+                [selectedTime]="selectedTime"
                 (seatSelected)="updateSelectedSeats($event)"
                 (seatDeselected)="updateSelectedSeats($event)">
     </app-cinema>

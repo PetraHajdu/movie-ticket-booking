@@ -204,6 +204,13 @@ export class AppComponent {
   }
 
   updateSelectedSeats(seat: number): void {
+    const selectedMovie = this.selectedMovie;
+
+    if (!selectedMovie) {
+      console.error('Selected movie is undefined');
+      return;
+    }
+
     const index = this.selectedSeats.indexOf(seat);
     if (index === -1) {
       this.selectedSeats.push(seat);
@@ -212,10 +219,18 @@ export class AppComponent {
     }
   }
 
+
   getTotalPrice(): number {
-    if (this.selectedMovie) {
-      return this.selectedSeats.length * this.selectedMovie.price;
+    if (this.selectedDate && this.selectedMovie && this.selectedTime) {
+      const selectedSeatPrice = this.selectedMovie.showtimes.find((showtime: any) => {
+        return showtime.date === this.selectedDate.d && showtime.time === this.selectedTime.t;
+      });
+
+      if (selectedSeatPrice) {
+        return this.selectedSeats.length * selectedSeatPrice.price;
+      }
     }
+
     return 0;
   }
 
@@ -248,12 +263,14 @@ export class AppComponent {
       if (isTimeValid) {
         this.selectedTime = time;
       } else {
+        console.error('Invalid time selected:', time);
         this.selectedTime = null;
       }
     } else {
       this.selectedTime = null;
     }
   }
+
 
 
 
