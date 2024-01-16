@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertService } from './alert.service';
 
 @Component({
   selector: 'app-root',
@@ -194,6 +195,8 @@ export class AppComponent {
   selectedSeats: number[] = [];
   filteredMovies: any[] = [];
 
+  constructor(private alertService: AlertService) {}
+
   updateSelectedMovie(movie: any): void {
     this.selectedSeats = [];
     this.selectedMovie = movie;
@@ -283,10 +286,10 @@ export class AppComponent {
           }
         });
         this.selectedSeats = [];
-        alert('Booking successful!');
+        this.alertService.showAlert('Booking Successful', 'Your booking was successful!');
       }
     } else {
-      alert('Please select seats before booking.');
+      this.alertService.showAlert('Booking Failed', 'Please select seats before booking.');
     }
   }
 

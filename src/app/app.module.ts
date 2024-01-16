@@ -11,7 +11,9 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { CinemaComponent } from './cinema/cinema.component';
 import { DateComponent } from './date/date.component';
 import { TimeComponent } from './time/time.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+import { AlertService} from "./alert.service";
 
 
 @NgModule({
@@ -21,16 +23,18 @@ import { TimeComponent } from './time/time.component';
     ShowcaseComponent,
     CinemaComponent,
     DateComponent,
-    TimeComponent
+    TimeComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
