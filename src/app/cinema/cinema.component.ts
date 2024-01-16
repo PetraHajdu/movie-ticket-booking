@@ -10,12 +10,11 @@ export class CinemaComponent {
   @Input() selectedSeats: number[] = [];
   @Input() selectedDate: any;
   @Input() selectedTime: any;
+
   @Output() seatSelected = new EventEmitter<number>();
   @Output() seatDeselected = new EventEmitter<number>();
 
   seats: { seatNumber: number, displayNumber: number }[][] = this.generateSeats();
-
-
 
   private generateSeats(): { seatNumber: number, displayNumber: number }[][] {
     const seatsArray: { seatNumber: number, displayNumber: number }[][] = [];
@@ -47,20 +46,38 @@ export class CinemaComponent {
 
     const isOccupied = selectedShowtime.occupied.includes(seat.seatNumber);
 
-    if (isOccupied) {
-      console.warn('Selected seat is already occupied');
-
-      return;
-    }
-
     const isSelected = this.selectedSeats.includes(seat.seatNumber);
-
 
     if (isSelected) {
       this.seatDeselected.emit(seat.seatNumber);
     } else {
       this.seatSelected.emit(seat.seatNumber);
     }
+
+    if (this.selectedDate === null || this.selectedDate === undefined || this.selectedDate === '') {
+      console.error('Please select a date before selecting a seat.');
+      alert('Please select a date before selecting a seat.');
+      return;
+    }
+
+    if (!this.selectedMovie) {
+      console.error('Please select a movie before selecting a seat.');
+      alert('Please select a movie before selecting a seat.');
+      return;
+    }
+
+    if (!this.selectedTime) {
+      console.error('Please select a time before selecting a seat.');
+      alert('Please select a time before selecting a seat.');
+      return;
+    }
+
+    if (isOccupied) {
+      console.warn('Selected seat is already occupied.');
+      alert('Selected seat is already occupied.');
+      return;
+    }
+
 
   }
 
@@ -74,7 +91,7 @@ export class CinemaComponent {
         .filter((showtime: any) => {
           return (
             showtime.date === this.selectedDate.d &&
-            showtime.time && // Ellenőrzés, hogy showtime.time definiált legyen
+            showtime.time &&
             showtime.time === this.selectedTime.t
           );
         })
@@ -85,9 +102,9 @@ export class CinemaComponent {
 
     return [
       'seat',
-      isSelected ? 'selected' : '', // Itt a változás
-      isOccupied ? 'occupied' : '', // Itt a változás
-    ].filter(Boolean); // Törli a hamis értékeket
+      isSelected ? 'selected' : '',
+      isOccupied ? 'occupied' : '',
+    ].filter(Boolean);
   }
 
 }

@@ -1,10 +1,26 @@
 <div class="App">
   <div class="Card">
-    <app-date [dates]="dates" [selectedDate]="selectedDate" (updateSelectedDate)="updateSelectedDate($event)"></app-date>
-    <app-movies *ngIf="selectedDate" [movies]="movies" [filteredMovies]="filteredMovies" [selectedMovie]="selectedMovie" (updateSelectedMovie)="updateSelectedMovie($event)"></app-movies>
-    <app-time *ngIf="selectedDate && selectedMovie" [times]="times" [selectedTime]="selectedTime" [selectedMovie]="selectedMovie" [selectedDate]="selectedDate" (updateSelectedTime)="updateSelectedTime($event)"></app-time>
+    <app-date
+                [dates]="dates"
+                [selectedDate]="selectedDate"
+                (updateSelectedDate)="updateSelectedDate($event)">
+    </app-date>
+    <app-movies *ngIf="selectedDate"
+                [movies]="movies"
+                [filteredMovies]="filteredMovies"
+                [selectedMovie]="selectedMovie"
+                (updateSelectedMovie)="updateSelectedMovie($event)">
+    </app-movies>
+    <app-time   *ngIf="selectedDate && selectedMovie"
+                [times]="times"
+                [selectedTime]="selectedTime"
+                [selectedMovie]="selectedMovie"
+                [selectedDate]="selectedDate"
+                (updateSelectedTime)="updateSelectedTime($event)">
+    </app-time>
     <app-showcase></app-showcase>
-    <app-cinema [selectedMovie]="selectedMovie"
+    <app-cinema
+                [selectedMovie]="selectedMovie"
                 [selectedSeats]="selectedSeats"
                 [selectedDate]="selectedDate"
                 [selectedTime]="selectedTime"
@@ -15,7 +31,7 @@
       You have selected <span class="count">{{ selectedSeats.length }}</span> seats for the price of
       <span class="total">{{ getTotalPrice() }}$</span>
     </p>
-    <button type="button" class="btn btn-success">Booking Now</button>
+    <button type="button" class="btn btn-success" (click)="handleBookingNow()">Booking Now</button>
   </div>
 </div>
 

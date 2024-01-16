@@ -1,7 +1,4 @@
-// app.component.ts
-
 import { Component } from '@angular/core';
-
 
 @Component({
   selector: 'app-root',
@@ -217,8 +214,9 @@ export class AppComponent {
     } else {
       this.selectedSeats.splice(index, 1);
     }
-  }
 
+    console.log('Updated Selected Seats:', this.selectedSeats);
+  }
 
   getTotalPrice(): number {
     if (this.selectedDate && this.selectedMovie && this.selectedTime) {
@@ -251,7 +249,6 @@ export class AppComponent {
     console.log('Filtered Movies:', this.filteredMovies);
   }
 
-
   updateSelectedTime(time: any): void {
     console.log('Selected Time Updated:', time);
 
@@ -271,8 +268,27 @@ export class AppComponent {
     }
   }
 
+  handleBookingNow(): void {
+    console.log('Selected Seats:', this.selectedSeats);
 
+    if (this.selectedSeats.length > 0 && this.selectedMovie && this.selectedDate && this.selectedTime) {
+      const selectedShowtime = this.selectedMovie.showtimes.find((showtime: any) => {
+        return showtime.date === this.selectedDate.d && showtime.time === this.selectedTime.t;
+      });
 
+      if (selectedShowtime) {
+        this.selectedSeats.forEach(seat => {
+          if (!selectedShowtime.occupied.includes(seat)) {
+            selectedShowtime.occupied.push(seat);
+          }
+        });
+        this.selectedSeats = [];
+        alert('Booking successful!');
+      }
+    } else {
+      alert('Please select seats before booking.');
+    }
+  }
 
 }
 
