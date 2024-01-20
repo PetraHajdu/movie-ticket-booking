@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { AlertService} from "../alert.service";
 
 @Component({
   selector: 'app-cinema',
@@ -15,6 +16,7 @@ export class CinemaComponent {
   @Output() seatDeselected = new EventEmitter<number>();
 
   seats: { seatNumber: number, displayNumber: number }[][] = this.generateSeats();
+  constructor(private alertService: AlertService) {}
 
   private generateSeats(): { seatNumber: number, displayNumber: number }[][] {
     const seatsArray: { seatNumber: number, displayNumber: number }[][] = [];
@@ -40,6 +42,24 @@ export class CinemaComponent {
 
   handleSelectedState(seat: { seatNumber: number, displayNumber: number }): void {
 
+    if (!this.selectedDate ) {
+      console.error('Please select a date before selecting a seat.');
+      this.alertService.showAlert('Booking Failed', 'Please select a date before selecting a seat.');
+      return;
+    }
+
+    if (!this.selectedMovie) {
+      console.error('Select a movie before choosing a seat.');
+      this.alertService.showAlert('Booking Failed', 'Please select a movie before choosing a seat.');
+      return;
+    }
+
+    if (!this.selectedTime) {
+      console.error('Please select a time before selecting a seat.');
+      this.alertService.showAlert('Booking Failed', 'Please select a time before selecting a seat.');
+      return;
+    }
+
     const selectedShowtime = this.selectedMovie.showtimes.find((showtime: any) => {
       return showtime.date === this.selectedDate.d && showtime.time === this.selectedTime.t;
     });
@@ -54,31 +74,11 @@ export class CinemaComponent {
       this.seatSelected.emit(seat.seatNumber);
     }
 
-    if (this.selectedDate === null || this.selectedDate === undefined || this.selectedDate === '') {
-      console.error('Please select a date before selecting a seat.');
-      alert('Please select a date before selecting a seat.');
-      return;
-    }
-
-    if (!this.selectedMovie) {
-      console.error('Please select a movie before selecting a seat.');
-      alert('Please select a movie before selecting a seat.');
-      return;
-    }
-
-    if (!this.selectedTime) {
-      console.error('Please select a time before selecting a seat.');
-      alert('Please select a time before selecting a seat.');
-      return;
-    }
-
     if (isOccupied) {
       console.warn('Selected seat is already occupied.');
-      alert('Selected seat is already occupied.');
+      this.alertService.showAlert('Booking Failed', 'Selected seat is already occupied.');
       return;
     }
-
-
   }
 
   getSeatClasses(seat: { seatNumber: number, displayNumber: number }): string[] {

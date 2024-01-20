@@ -289,7 +289,11 @@ export class AppComponent {
         this.alertService.showAlert('Booking Successful', 'Your booking was successful!');
       }
     } else {
-      this.alertService.showAlert('Booking Failed', 'Please select seats before booking.');
+      if(this.selectedMovie && this.selectedDate && this.selectedTime){
+        this.alertService.showAlert('Booking Failed', 'Please select a seat before booking.');
+      }else{
+        this.alertService.showAlert('Booking Failed', 'Please select a date, a movie and a time before booking.');
+      }
     }
   }
 
