@@ -1,0 +1,9 @@
+<div class="Date">
+  <label for="date">Pick a date</label>
+  <select id="date" [(ngModel)]="selectedDate" (change)="onSelectDate()">
+    <option *ngFor="let date of dates" [ngValue]="date">
+      {{ date.d }}
+    </option>
+  </select>
+</div>
+

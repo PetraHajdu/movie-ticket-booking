@@ -1,0 +1,14 @@
+<div class="Time">
+  <label for="time">Pick a time</label>
+  <select id="time" [(ngModel)]="selectedTime" (change)="onSelectTime()">
+    <option *ngFor="let time of filteredTimes" [ngValue]="time">
+      {{ time.t }}
+    </option>
+  </select>
+</div>
+
+
+
+
+
+
