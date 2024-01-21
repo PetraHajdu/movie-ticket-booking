@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TimeComponent } from './time.component';
 
@@ -8,7 +9,8 @@ describe('TimeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimeComponent ]
+      declarations: [ TimeComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
 
