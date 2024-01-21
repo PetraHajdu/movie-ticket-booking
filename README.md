@@ -18,10 +18,10 @@ This is a simple Angular application for booking movie tickets. Users can select
  ![](src/assets/images/5.png)
  
 - Price Calculation: The total price is calculated based on the selected seats and the corresponding showtime prices.
- ![](src/assets/images/6.png)
+ ![](src/assets/images/5.png)
  
 - Booking Confirmation: Users can confirm their booking, and the application displays a modal with the booking status.
- ![](src/assets/images/7.png)
+ ![](src/assets/images/6.png)
 
 ## Components
 
