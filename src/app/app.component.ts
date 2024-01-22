@@ -195,7 +195,7 @@ export class AppComponent {
   selectedSeats: number[] = [];
   filteredMovies: any[] = [];
 
-  constructor(private alertService: AlertService) {}
+  constructor(public  alertService: AlertService) {}
 
   updateSelectedMovie(movie: any): void {
     this.selectedSeats = [];
