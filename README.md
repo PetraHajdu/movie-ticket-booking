@@ -55,3 +55,8 @@ The application is built using Angular and includes the following components:
 4. Confirm your booking.
 5. View the booking status in the modal.
 
+## Testing
+
+The application includes a suite of automated tests to ensure its correctness and reliability.
+Run the tests (ng test).
+This will execute the automated test suite using Karma and Jasmine, providing feedback on the application's functionality and correctness.
